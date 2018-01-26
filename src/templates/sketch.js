@@ -3,9 +3,8 @@ import Link from 'gatsby-link'
 
 import p5Convert from 'p5-global2instance'
 import p5 from 'p5'
-// import sketch from '../utils/baseSketch.js'
 
-// page component
+
 export default class SecondPage extends React.Component {
   constructor(props) {
     super(props);
@@ -32,3 +31,14 @@ export default class SecondPage extends React.Component {
     )
   }
 }
+
+export const query = graphql`
+  query SketchQuery($slug: String!) {
+    allFile(fields: { name: { eq: $name } }) {
+      html
+      frontmatter {
+        title
+      }
+    }
+  }
+`;

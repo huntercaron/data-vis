@@ -3,8 +3,12 @@
 */
 const path = require('path');
 const fs = require('fs');
+const p5Convert = require('p5-global2instance');
 
 const staticImagePath = "./static/assets/";
+const sketchPath = "./src/sketches/"
+const sketchOutputPath = "./src/sketches/output/"
+
 
 exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
   if (node.internal.mediaType == "image/png" || node.internal.mediaType === `image/jpeg`) {
@@ -14,6 +18,27 @@ exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
 
     fs.createReadStream("./src/content/" + node.relativePath).pipe(fs.createWriteStream(staticImagePath + node.base));
   }
+
+
+  if (node.name) {
+    if (node.name.includes('p5')) {
+      console.log("\n")
+      console.log(node.name.slice(0, -3));
+
+      fs.readFile("./src/sketches/" + node.relativePath, 'utf8', (err, data) => {
+
+        let sketch = p5Convert(data);
+
+        fs.writeFile(sketchOutputPath + node.name.slice(0, -3) + '.js', sketch);
+
+      })
+
+    }
+  }
+  //
+  // if (node.name.includes('p5')) {
+  //   console.log(node.name);
+  // }
 }
 
 exports.createPages = ({ boundActionCreators, graphql }) => {

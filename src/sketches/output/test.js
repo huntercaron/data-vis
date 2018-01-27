@@ -5,7 +5,7 @@ export default function ($_p) {
   let previous;
   
   $_p.setup = function () {
-    $_p.createCanvas(720, 400)
+    $_p.createCanvas($_p.windowWidth, $_p.windowHeight)
   };
   
   $_p.draw = function () {

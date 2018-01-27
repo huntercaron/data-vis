@@ -6,18 +6,9 @@ import styled, { injectGlobal } from 'styled-components'
 import 'normalize.css'
 
 // importing fonts
-import NeueHaasGrotTextRoman_eot from "../assets/fonts/NeueHaasGrotText-55Roman-Web.eot"
-import NeueHaasGrotTextRoman_woff from "../assets/fonts/NeueHaasGrotText-55Roman-Web.woff"
-import NeueHaasGrotTextRoman_woff2 from "../assets/fonts/NeueHaasGrotText-55Roman-Web.woff2"
-import NeueHaasGrotTextItalic_eot from "../assets/fonts/NeueHaasGrotText-56Italic-Web.eot"
-import NeueHaasGrotTextItalic_woff from "../assets/fonts/NeueHaasGrotText-56Italic-Web.woff"
-import NeueHaasGrotTextItalic_woff2 from "../assets/fonts/NeueHaasGrotText-56Italic-Web.woff2"
-import NeueHaasGrotDispRoman_eot from "../assets/fonts/NeueHaasGrotDisp-55Roman-Web.eot"
-import NeueHaasGrotDispRoman_woff from "../assets/fonts/NeueHaasGrotDisp-55Roman-Web.woff"
-import NeueHaasGrotDispRoman_woff2 from "../assets/fonts/NeueHaasGrotDisp-55Roman-Web.woff2"
-import NeueHaasGrotDispItalic_eot from "../assets/fonts/NeueHaasGrotDisp-56Italic-Web.eot"
-import NeueHaasGrotDispItalic_woff from "../assets/fonts/NeueHaasGrotDisp-56Italic-Web.woff"
-import NeueHaasGrotDispItalic_woff2 from "../assets/fonts/NeueHaasGrotDisp-56Italic-Web.woff2"
+import SpaceMonoRegular_eot from "../assets/fonts/SpaceMono-Regular.eot"
+import SpaceMonoRegular_woff from "../assets/fonts/SpaceMono-Regular.woff"
+import SpaceMonoRegular_woff2 from "../assets/fonts/SpaceMono-Regular.woff2"
 
 
 /*
@@ -49,7 +40,24 @@ const TitleLink = styled(Link)`
 `
 
 const HeaderContainer = styled.div`
+  position: fixed;
+  top: 1.5rem;
+  left: 1.5rem;
+`
 
+const Circle = styled.div`
+  background-color: white;
+  border: 1px solid black;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+
+  transition: background 100ms ease-out;
+
+  &:hover {
+    background-color: black;
+    border: 1px solid white;
+  }
 `
 
 
@@ -58,7 +66,7 @@ function Header () {
   return (
     <HeaderContainer>
       <TitleLink to="/">
-          <h1>Boiled</h1>
+          <Circle/>
       </TitleLink>
     </HeaderContainer>
   )
@@ -119,7 +127,8 @@ injectGlobal`
       font-size: 1.6em;
       line-height: 1.6;
       font-weight: 400;
-      font-family: 'Haas Grot Text', 'Helvetica', 'Arial', sans-serif;
+      font-family: 'Space Mono', 'Helvetica', 'Arial', sans-serif;
+      font-variant-ligatures: none;
       color: #222;
       webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
@@ -132,54 +141,26 @@ injectGlobal`
     height: 100%;
   }
 
+  code {
+    font-family: 'Space Mono', 'Helvetica', 'Arial', sans-serif;
+  }
+
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Haas Grot Display', 'Helvetica', 'Arial', sans-serif;
+    font-family: 'Space Mono', 'Helvetica', 'Arial', sans-serif;
     margin-top: 0;
     margin-bottom: 0rem;
     font-weight: 400;
   }
 
   @font-face {
-    font-family: 'Haas Grot Text';
-    src: url(${NeueHaasGrotTextRoman_eot});
-    src: url('${NeueHaasGrotTextRoman_eot}?#iefix') format('embedded-opentype'),
-      url('${NeueHaasGrotTextRoman_woff2}') format('woff2'),
-      url('${NeueHaasGrotTextRoman_woff}') format('woff');
+    font-family: 'Space Mono';
+    src: url(${SpaceMonoRegular_eot});
+    src: url('${SpaceMonoRegular_eot}?#iefix') format('embedded-opentype'),
+      url('${SpaceMonoRegular_woff2}') format('woff2'),
+      url('${SpaceMonoRegular_woff}') format('woff');
     font-weight: 400;
     font-style: normal;
     font-stretch: normal;
   }
 
-  @font-face {
-    font-family: 'Haas Grot Text';
-    src: url(${NeueHaasGrotTextRoman_eot});
-    src: url('${NeueHaasGrotTextItalic_eot}?#iefix') format('embedded-opentype'),
-      url('${NeueHaasGrotTextItalic_woff2}') format('woff2'),
-      url('${NeueHaasGrotTextItalic_woff}') format('woff');
-    font-weight: 400;
-    font-style: italic;
-    font-stretch: normal;
-  }
-
-  @font-face {
-    font-family: 'Haas Grot Display';
-    src: url(${NeueHaasGrotDispRoman_eot});
-    src: url('${NeueHaasGrotDispRoman_eot}?#iefix') format('embedded-opentype'),
-      url('${NeueHaasGrotDispRoman_woff2}') format('woff2'),
-      url('${NeueHaasGrotDispRoman_woff}') format('woff');
-    font-weight: 400;
-    font-style: normal;
-    font-stretch: normal;
-  }
-
-  @font-face {
-    font-family: 'Haas Grot Display';
-    src: url(${NeueHaasGrotDispItalic_eot});
-    src: url('${NeueHaasGrotDispItalic_eot}?#iefix') format('embedded-opentype'),
-      url('${NeueHaasGrotDispItalic_woff2}') format('woff2'),
-      url('${NeueHaasGrotDispItalic_woff}') format('woff');
-    font-weight: 400;
-    font-style: italic;
-    font-stretch: normal;
-  }
 `

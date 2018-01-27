@@ -21,6 +21,9 @@ exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
     		value: node.name.replace(".p5", "")
     	});
 
+      console.log();
+      console.log(node.name.replace(".p5", ""));
+
 			fs.readFile(
 				"./src/sketches/" + node.relativePath,
 				"utf8",

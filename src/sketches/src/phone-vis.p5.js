@@ -5,8 +5,6 @@ const uniqueArray = arr => [...new Set(arr)];
 const propArray = (data, value) => data.map( node => node[value]);
 const uniqueObj = (data, value) => uniqueArray(propArray(data,value));
 
-// let height = 0;
-
 let callsByNumber = [];
 let n = 0;
 const maxLength = Math.max(...propArray(records, 'length'));
@@ -17,10 +15,8 @@ function setup () {
   angleMode(DEGREES);
   background(0);
 
-
   for (let phoneNum of uniqueObj(records, 'phoneNum')) {
     if (records.filter(r => r.phoneNum === phoneNum)) {
-      console.log(phoneNum)
       callsByNumber.push(records.filter(r => r.phoneNum === phoneNum));
     }
   }

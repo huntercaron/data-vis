@@ -76,7 +76,6 @@ export default class SecondPage extends React.Component {
 
     const file = require(`!babel-loader!../sketches/output/${this.props.data.file.fields.slug}.js`);
     this.file = file.default;
-    console.log(file.default)
 
     this.state = {
       panelOpen: false

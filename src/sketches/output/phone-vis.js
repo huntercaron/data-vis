@@ -15,7 +15,6 @@ export default function (sketch) {
     sketch.background(0);
     for (let phoneNum of uniqueObj(records, 'phoneNum')) {
       if (records.filter(r => r.phoneNum === phoneNum)) {
-        console.log(phoneNum);
         callsByNumber.push(records.filter(r => r.phoneNum === phoneNum))
       }
     }

@@ -22,22 +22,28 @@ export default class SecondPage extends React.Component {
       var myp5 = new p5(this.file, this.mount);
     }
 
+    console.log(this.props.data);
+
     return (
       <div>
         <div
            ref={(mount) => {this.mount = mount}}
          />
+         <code>{this.props.data.file.fields.code}</code>
       </div>
+
     )
   }
 }
 
 export const query = graphql`
   query SketchQuery($slug: String!) {
-    allFile(fields: { name: { eq: $name } }) {
-      html
-      frontmatter {
-        title
+    file(fields: { slug: { eq: $slug } }) {
+      name
+      relativePath
+      fields {
+        slug
+        code
       }
     }
   }

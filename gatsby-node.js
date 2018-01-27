@@ -14,6 +14,13 @@ exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
 
 	if (node.name) {
 		if (node.name.includes("p5") && node.internal.mediaType === `application/javascript`) {
+
+      createNodeField({
+    		node,
+    		name: `slug`,
+    		value: node.name.replace(".p5", "")
+    	});
+
 			fs.readFile(
 				"./src/sketches/" + node.relativePath,
 				"utf8",
@@ -35,7 +42,7 @@ exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
 	}
 
   if (node.internal.type === `MarkdownRemark`) {
-  	const slug = createFilePath({ node, getNode, basePath: `content` });
+  	let slug = createFilePath({ node, getNode, basePath: `content` });
   	createNodeField({
   		node,
   		name: `slug`,
@@ -53,7 +60,9 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
 			allFile(filter: { name: { regex: "/p5/" } }) {
 				edges {
 					node {
-						name
+            fields {
+              slug
+            }
 					}
 				}
 			}
@@ -76,15 +85,21 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
 
 		result.data.allFile.edges.forEach(({ node }) => {
 			createPage({
-				path: node.name.replace(".p5", ""),
-				component: path.resolve(`src/templates/sketch.js`)
+				path: node.fields.slug,
+				component: path.resolve(`src/templates/sketch.js`),
+        context: {
+          slug: node.fields.slug
+        }
 			});
 		});
 
 		result.data.allMarkdownRemark.edges.forEach(({ node }) => {
 			createPage({
 				path: node.fields.slug,
-				component: path.resolve(`src/templates/post.js`)
+				component: path.resolve(`src/templates/post.js`),
+        context: {
+          slug: node.fields.slug
+        }
 			});
 		});
 	});

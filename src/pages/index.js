@@ -95,6 +95,7 @@ export const query = graphql`
       edges {
         node {
           name
+          id
           fields {
             slug
           }

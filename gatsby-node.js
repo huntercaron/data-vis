@@ -4,6 +4,7 @@
 const path = require("path");
 const fs = require("fs");
 const p5Convert = require("p5-global2instance");
+const babel = require("babel-core");
 const { createFilePath } = require(`gatsby-source-filesystem`);
 
 const sketchPath = "./src/sketches/";
@@ -35,6 +36,8 @@ exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
           });
 
 					let sketch = p5Convert(data);
+
+					let compiledData = babel.transform(sketch, {"presets": ["env"]});
 					fs.writeFile(
 						sketchOutputPath + node.name.replace(".p5", "") + ".js",
 						sketch

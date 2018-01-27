@@ -1,9 +1,8 @@
-const records = require('../assets/phoneRecords.json');
 let current;
 let previous;
 
 function setup () {
-  createCanvas(720, 400);
+  createCanvas(windowWidth, windowHeight);
 };
 
 function draw () {

@@ -4,8 +4,22 @@ import styled from 'styled-components'
 
 // styled-components
 const Content = styled.div`
-  p {
-    max-width: 500px;
+  margin-bottom: 6rem;
+  margin-top: 4rem;
+
+  p,h1,h2,h3,h4 {
+    max-width: 550px;
+    margin: auto;
+  }
+
+  h1,h2,h3,h4 {
+    margin: 3rem auto 0.8rem auto;
+  }
+
+  img {
+    max-width: 650px;
+    margin: 3rem;
+    margin-left: -50px;
   }
 `
 

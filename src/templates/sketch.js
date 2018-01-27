@@ -19,44 +19,87 @@ const SketchContainer = styled.div`
 
 const CodePanel = styled.div`
   position: fixed;
-  width: 50%;
+  width: 100%;
   height: 100%;
   right: 0;
   top: 0;
   background-color: white;
   z-index: 1;
   display: flex;
+
+  transform: translateX(${props => props.panelOpen ? "0" : "calc(100% - 39px)"});
+
+  transition: all 250ms ease-out;
 `
 
 const PanelHandle = styled.div`
   height: 100%;
   width: 40px;
   border-right: 1px solid black;
+  border-left: 1px solid black;
   margin-right: 2rem;
 
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 
   p {
     margin: 0;
-    line-height: 1rem;
-    width: 1rem;
-
+    width: 1.4rem;
+    line-height: 0.3;
+    width: 0;
     text-align: center;
     writing-mode: vertical-lr;
   }
+`
+
+const CodeContainer = styled.div`
+  overflow: auto;
+  width: 100%;
+  display: flex;
+  padding: 1rem;
+
+  justify-content: center;
+`
+
+const Code = styled.code`
+  margin: 1.5rem auto;
+  margin-bottom: 6rem;
+  white-space: pre-wrap;
+  max-width: 800px;
 `
 
 export default class SecondPage extends React.Component {
   constructor(props) {
     super(props);
 
-    const file = require('../sketches/output/test.js');
-    this.file = file;
+    const file = require(`!babel-loader!../sketches/output/${this.props.data.file.fields.slug}.js`);
+    this.file = file.default;
+    console.log(file.default)
+
+    this.state = {
+      panelOpen: false
+    }
   }
+
   componentDidMount() {
+    window.addEventListener("resize", this.updateDimensions);
     this.forceUpdate()
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.updateDimensions);
+  }
+
+  resize = () => {
+    this.forceUpdate()
+  }
+
+  togglePanel = () => {
+    this.setState(prevState => ({
+      panelOpen: !prevState.panelOpen
+    }));
   }
 
   render() {
@@ -72,12 +115,16 @@ export default class SecondPage extends React.Component {
         </SketchContainer>
 
 
-         <CodePanel>
-           <PanelHandle>
+         <CodePanel panelOpen={this.state.panelOpen}>
+           <PanelHandle onClick={this.togglePanel}>
              <p>code</p>
            </PanelHandle>
 
-           <code dangerouslySetInnerHTML={{ __html: this.props.data.file.fields.code.replace(/(?:\r\n|\r|\n)/g, '<br />') }}/>
+
+           <CodeContainer>
+             <Code dangerouslySetInnerHTML={{ __html: this.props.data.file.fields.code }}/>
+           </CodeContainer>
+
          </CodePanel>
 
       </Container>

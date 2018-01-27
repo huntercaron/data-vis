@@ -7219,7 +7219,7 @@ p-try@^1.0.0:
 
 p5-global2instance@huntercaron/p5-global2instance:
   version "0.9.0"
-  resolved "https://codeload.github.com/huntercaron/p5-global2instance/tar.gz/22a6288c4e00746488634e0a39a71a18da1deb4e"
+  resolved "https://codeload.github.com/huntercaron/p5-global2instance/tar.gz/a68dc61b65dd807c3fc0b70a9e733bbf9eafaf98"
   dependencies:
     commander "^2.12.2"
     escodegen "^1.9.0"

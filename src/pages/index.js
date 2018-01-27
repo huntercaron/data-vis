@@ -46,6 +46,7 @@ function PageLink(props) {
 // page component
 export default function IndexPage({ data }) {
   const pages = data.allMarkdownRemark.edges;
+  const sketches = data.allFile.edges;
 
   return (
     <Container>
@@ -56,6 +57,13 @@ export default function IndexPage({ data }) {
           <PageLink
             to={page.frontmatter.path}
             title={page.frontmatter.title}
+            key={page.id}
+          />
+        ))}
+        {sketches.map( ({ node: page }, i) => (
+          <PageLink
+            to={page.fields.slug}
+            title={page.fields.slug.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()})}
             key={page.id}
           />
         ))}
@@ -79,6 +87,16 @@ export const query = graphql`
             title
             path
             date(formatString: "DD MMMM, YYYY")
+          }
+        }
+      }
+    }
+    allFile (filter: { name: { regex: "/.p5/" }}) {
+      edges {
+        node {
+          name
+          fields {
+            slug
           }
         }
       }

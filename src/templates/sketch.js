@@ -1,7 +1,5 @@
 import React from 'react'
 import Link from 'gatsby-link'
-
-import p5Convert from 'p5-global2instance'
 import p5 from 'p5'
 
 
@@ -29,7 +27,7 @@ export default class SecondPage extends React.Component {
         <div
            ref={(mount) => {this.mount = mount}}
          />
-         <code>{this.props.data.file.fields.code}</code>
+         <code>{this.props.data.file.fields.code.replace(/(?:\r\n|\r|\n)/g, '<br />')}</code>
       </div>
 
     )

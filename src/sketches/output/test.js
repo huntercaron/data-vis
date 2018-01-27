@@ -1,17 +1,17 @@
 
-export default function (sketch) {
+export default function ($_p) {
   const records = require('../assets/phoneRecords.json');
   let current;
   let previous;
-
-  sketch.setup = function () {
-    sketch.createCanvas(720, 400)
+  
+  $_p.setup = function () {
+    $_p.createCanvas(720, 400)
   };
-
-  sketch.draw = function () {
-    sketch.background(0);
-    sketch.stroke(255);
-    sketch.rect(10, 0, 20, 200);
-    sketch.rect(100, 50, 20, 400)
+  
+  $_p.draw = function () {
+    $_p.background(0);
+    $_p.stroke(255);
+    $_p.rect(50, 0, 20, 200);
+    $_p.rect(100, 50, 20, 400)
   };
 }

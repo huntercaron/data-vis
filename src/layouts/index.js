@@ -77,7 +77,7 @@ function Header () {
 const TemplateWrapper = ({ children }) => (
   <Container>
     <Helmet
-      title="boiled"
+      title="Data Vis"
       meta={[
         { name: 'description', content: 'Sample' },
         { name: 'keywords', content: 'sample, something' },
@@ -162,6 +162,8 @@ injectGlobal`
     font-style: normal;
     font-stretch: normal;
   }
+
+  /* syntax highlighing */
 
   code[class*="language-"],
   pre[class*="language-"] {

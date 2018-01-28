@@ -10,7 +10,7 @@ export default function (sketch) {
   sketch.draw = function () {
     sketch.background(0);
     sketch.stroke(255);
-    sketch.rect(50, 0, 20, 200);
+    sketch.rect(250, 0, 20, 200);
     sketch.rect(100, 50, 20, 400)
   };
 }

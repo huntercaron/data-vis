@@ -19,7 +19,7 @@ const Subtitle = styled.div`
 `
 
 const List = styled.ul`
-  list-style:
+
 `
 
 const LinkContainer = styled.li`
@@ -37,6 +37,7 @@ const LinkText = styled(Link)`
 
 const Col = styled.div`
   padding-bottom: 3rem;
+  font-size: 1.8rem;
 `
 
 

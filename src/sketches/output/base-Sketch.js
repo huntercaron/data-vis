@@ -4,13 +4,20 @@ export default function (sketch) {
   let previous;
   
   sketch.setup = function () {
-    sketch.createCanvas(sketch.windowWidth, sketch.windowHeight)
+    sketch.createCanvas(sketch.windowWidth, sketch.windowHeight);
+    sketch.angleMode(sketch.DEGREES)
   };
   
   sketch.draw = function () {
     sketch.background(0);
+    sketch.noStroke();
+    sketch.fill(255);
+    sketch.textSize(236);
+    sketch.translate(sketch.width / 2, sketch.height / 2);
+    sketch.text('P5', -160, 330 * Math.sin(sketch.frameCount * 0.01));
+    sketch.translate(-sketch.width / 2, -sketch.height / 2);
+    sketch.noFill();
     sketch.stroke(255);
-    sketch.rect(250, 0, 20, 200);
-    sketch.rect(100, 50, 20, 400)
+    sketch.ellipse(sketch.mouseX, sketch.mouseY, 100, 100)
   };
 }

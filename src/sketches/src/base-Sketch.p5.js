@@ -3,11 +3,20 @@ let previous;
 
 function setup () {
   createCanvas(windowWidth, windowHeight);
+  angleMode(DEGREES);
 };
 
 function draw () {
   background(0);
+  noStroke();
+  fill(255);
+
+  textSize(236);
+  translate(width/2, height/2)
+  text('P5', -160,  330*Math.sin(frameCount*0.01));
+  translate(-width/2, -height/2)
+
+  noFill();
   stroke(255);
-  rect(250,0,20,200);
-  rect(100,50,20,400);
+  ellipse(mouseX,mouseY, 100,100)
 };

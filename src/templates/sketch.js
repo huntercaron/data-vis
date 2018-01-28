@@ -2,6 +2,9 @@ import React from 'react'
 import Link from 'gatsby-link'
 import styled from 'styled-components'
 import p5 from 'p5'
+import Prism from 'prismjs'
+// import SyntaxHighlighter from 'react-syntax-highlighter';
+// // import { docco } from 'react-syntax-highlighter/styles/hljs';
 
 const Container = styled.div`
   height: 100%;
@@ -129,7 +132,8 @@ export default class SecondPage extends React.Component {
 
 
            <CodeContainer>
-             <Code dangerouslySetInnerHTML={{ __html: this.props.data.file.fields.code }}/>
+             {/* <Code language='javascript' style={docco}>{this.props.data.file.fields.code}</Code>; */}
+             <Code dangerouslySetInnerHTML={{ __html: Prism.highlight(this.props.data.file.fields.code, Prism.languages.javascript) }}/>
            </CodeContainer>
 
          </CodePanel>

@@ -14,7 +14,7 @@ function setup () {
   height = windowHeight;
   angleMode(DEGREES);
   background(0);
-
+  
   for (let phoneNum of uniqueObj(records, 'phoneNum')) {
     if (records.filter(r => r.phoneNum === phoneNum)) {
       callsByNumber.push(records.filter(r => r.phoneNum === phoneNum));

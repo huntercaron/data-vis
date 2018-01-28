@@ -26,7 +26,7 @@ export default function (sketch) {
     let lineY = sketch.height / 2;
     let curve = 0;
     sketch.translate(sketch.width / 2, sketch.height / 2);
-    let radius = sketch.height * 0.4;
+    let radius = 300;
     let numPoints = 32;
     let angle = sketch.TWO_PI / numPoints;
     let number = callsByNumber[n];

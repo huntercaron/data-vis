@@ -6,7 +6,12 @@ import Button from '../components/Button'
 
 // styled components
 const Container = styled.div`
-
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  padding-left: 2rem;
+  padding-top: 7rem;
 `
 
 const Subtitle = styled.div`
@@ -30,6 +35,10 @@ const LinkText = styled(Link)`
   }
 `
 
+const Col = styled.div`
+  padding-bottom: 3rem;
+`
+
 
 // components
 function PageLink(props) {
@@ -50,26 +59,36 @@ export default function IndexPage({ data }) {
 
   return (
     <Container>
-      <Subtitle>dynamic pages:</Subtitle>
 
-      <List>
-        {pages.map( ({ node: page }, i) => (
-          <PageLink
-            to={page.frontmatter.path}
-            title={page.frontmatter.title}
-            key={page.id}
-          />
-        ))}
-        {sketches.map( ({ node: page }, i) => (
-          <PageLink
-            to={page.fields.slug}
-            title={page.fields.slug.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()})}
-            key={page.id}
-          />
-        ))}
-      </List>
+      <Col>
+        <Subtitle>P5 Sketches:</Subtitle>
 
-      <Button text="this is a button component" />
+        <List>
+          {sketches.map( ({ node: page }, i) => (
+            <PageLink
+              to={page.fields.slug}
+              title={page.fields.slug.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()})}
+              key={page.id}
+            />
+          ))}
+        </List>
+      </Col>
+
+
+      <Col>
+        <Subtitle>Text Post:</Subtitle>
+
+        <List>
+          {pages.map( ({ node: page }, i) => (
+            <PageLink
+              to={page.frontmatter.path}
+              title={page.frontmatter.title}
+              key={page.id}
+            />
+          ))}
+        </List>
+      </Col>
+
 
     </Container>
   )
@@ -91,11 +110,13 @@ export const query = graphql`
         }
       }
     }
-    allFile (filter: { name: { regex: "/.p5/" }}) {
+    allFile (sort: { fields: [birthtime], order: DESC },
+      filter: { name: { regex: "/.p5/" }}) {
       edges {
         node {
           name
           id
+          birthtime(formatString: "DD MMMM, YYYY")
           fields {
             slug
           }

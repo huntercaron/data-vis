@@ -20,6 +20,8 @@ function setup () {
       callsByNumber.push(records.filter(r => r.phoneNum === phoneNum));
     }
   }
+
+  console.log(callsByNumber);
 };
 
 
@@ -30,34 +32,37 @@ function draw() {
   let lineY =  height/2;
   let curve = 0;
 
-  translate( width/2,  height/2);
-
-  let radius = height*0.4;
+  let length = 300;
   let numPoints = 32;
   let angle =  TWO_PI/numPoints;
   let number = callsByNumber[n];
 
-  rotate(360/callsByNumber.length*n);
+
+
+  translate(20, height/2)
 
   for (let call of number) {
 
     let time = call.time.split(':');
     let minutes = (+time[0]) * 60 + (+time[1]);
-    curve = (minutes-720)*0.1;
+    curve = (minutes-720)*0.6;
 
     stroke(255,  map(call.length, 1, maxLength, 10, 255));
 
     // 1440
 
+    // length = n*((width-150)/callsByNumber.length)+100
+    length = width - 30 - (callsByNumber[n].length)*20;
+
     stroke(
      map(minutes, 0, 1440, 79, 35),
      map(minutes, 0, 1440, 104, 200),
      map(minutes, 0, 1440, 250, 100),
-     map(call.length, 1, maxLength, 100, 255)
+     map(call.length, 1, maxLength, 50, 200)
     );
 
-    strokeWeight( map(call.length, 1, maxLength, 0.5, 3));
-    bezier(0, 0, radius/4, 0-curve, radius/4*3, 0-curve, radius, 0);
+    strokeWeight( map(call.length, 1, maxLength, 0.8, 2));
+    bezier(0, 0, length/4, 0-curve, length/4*3, 0-curve, length, 0);
   }
 
 

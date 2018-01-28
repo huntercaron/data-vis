@@ -21,22 +21,20 @@ const CodePanel = styled.div`
   position: fixed;
   width: 100%;
   height: 100%;
-  right: 0;
+  left: 0;
   top: 0;
   background-color: white;
   z-index: 1;
-  display: flex;
-
-  transform: translateX(${props => props.panelOpen ? "0" : "calc(100% - 39px)"});
+  transform: translateY(${props => props.panelOpen ? "0" : "calc(100% - 40px)"});
 
   transition: all 250ms ease-out;
 `
 
 const PanelHandle = styled.div`
-  height: 100%;
-  width: 40px;
-  border-right: 1px solid black;
-  border-left: 1px solid black;
+  width: 100%;
+  height: 40px;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
   margin-right: 2rem;
 
   display: flex;
@@ -45,13 +43,19 @@ const PanelHandle = styled.div`
   cursor: pointer;
 
   p {
-    margin: 0;
-    width: 1.4rem;
-    line-height: 0.3;
-    width: 0;
     text-align: center;
-    writing-mode: vertical-lr;
   }
+
+  &:hover {
+    p::before {
+      content: "|| "
+    }
+    p::after {
+      content: " ||"
+    }
+  }
+
+
 `
 
 const CodeContainer = styled.div`
@@ -59,7 +63,7 @@ const CodeContainer = styled.div`
   width: 100%;
   display: flex;
   padding: 1rem;
-
+  height: 100%;
   justify-content: center;
 `
 
@@ -68,6 +72,7 @@ const Code = styled.code`
   margin-bottom: 6rem;
   white-space: pre-wrap;
   max-width: 800px;
+  height: 100%;
 `
 
 export default class SecondPage extends React.Component {
@@ -75,6 +80,7 @@ export default class SecondPage extends React.Component {
     super(props);
 
     const file = require(`!babel-loader!../sketches/output/${this.props.data.file.fields.slug}.js`);
+
     this.file = file.default;
 
     this.state = {
@@ -83,12 +89,14 @@ export default class SecondPage extends React.Component {
   }
 
   componentDidMount() {
+    this.mount.innerHTML = "";
     window.addEventListener("resize", this.updateDimensions);
     this.forceUpdate()
   }
 
   componentWillUnmount() {
     window.removeEventListener("resize", this.updateDimensions);
+    this.mount.innerHTML = "";
   }
 
   resize = () => {

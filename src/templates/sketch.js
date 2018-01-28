@@ -68,14 +68,21 @@ const CodeContainer = styled.div`
   padding: 1rem;
   height: 100%;
   justify-content: center;
+  padding: 3%;
+
+  @media (max-width: 500px) {
+    font-size: 1.4rem;
+  }
 `
 
 const Code = styled.code`
   margin: 1.5rem auto;
   margin-bottom: 6rem;
   white-space: pre-wrap;
-  max-width: 800px;
+  max-width: 850px;
   height: 100%;
+  width: 100%;
+
 `
 
 export default class SecondPage extends React.Component {

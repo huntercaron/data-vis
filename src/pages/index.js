@@ -76,7 +76,7 @@ export default function IndexPage({ data }) {
 
 
       <Col>
-        <Subtitle>Text Post:</Subtitle>
+        <Subtitle>Text Posts:</Subtitle>
 
         <List>
           {pages.map( ({ node: page }, i) => (

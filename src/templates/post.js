@@ -6,6 +6,9 @@ import styled from 'styled-components'
 const Content = styled.div`
   margin-bottom: 6rem;
   margin-top: 4rem;
+  &:last-child {
+    margin-bottom: 4rem;
+  }
 
   p,h1,h2,h3,h4 {
     max-width: 550px;

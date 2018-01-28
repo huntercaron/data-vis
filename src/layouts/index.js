@@ -115,8 +115,8 @@ injectGlobal`
   }
 
   html {
-  ${'' /* Maybe Try?  font-size: calc(1.25vw + 62.5%); */}
-    font-size: 62.5%;
+    font-size: calc(0.2vw + 46.5%);
+    ${'' /* font-size: 62.5%; */}
     height: 100%;
   }
 
@@ -163,33 +163,12 @@ injectGlobal`
     font-stretch: normal;
   }
 
-  /*
-  SOLARIZED HEX
-  --------- -------
-  base03    #002b36
-  base02    #073642
-  base01    #586e75
-  base00    #657b83
-  base0     #839496
-  base1     #93a1a1
-  base2     #eee8d5
-  base3     #fdf6e3
-  yellow    #b58900
-  orange    #cb4b16
-  red       #dc322f
-  magenta   #d33682
-  violet    #6c71c4
-  blue      #268bd2
-  cyan      #2aa198
-  green     #859900
-  */
-
   code[class*="language-"],
   pre[class*="language-"] {
-  	color: black;
+  	color: #666;
   	background: none;
   	text-shadow: 0 1px white;
-  	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  	font-family: 'Space Mono', Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
   	text-align: left;
   	white-space: pre;
   	word-spacing: normal;

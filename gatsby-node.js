@@ -42,11 +42,17 @@ exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
 							node,
 							name: `title`,
 							value: node.name.replace(".p5", "")
-							//maybe use .replace(/-/g, " ")
+							//maybe use .replace(/-/g, " ") for more clean titles
 						});
 					}
 					
-					let transformedData = babel.transform(data, { "presets": ["env"] }).code;
+					let transformedData = babel.transform(data, { 
+						"presets": ["env"],
+						"plugins": [
+							"transform-es2015-arrow-functions",
+							"babel-plugin-transform-class-properties"
+						]
+					}).code;
 
 					let sketch = p5Convert(transformedData);
 

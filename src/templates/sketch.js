@@ -3,8 +3,6 @@ import Link from 'gatsby-link'
 import styled from 'styled-components'
 import p5 from 'p5'
 import Prism from 'prismjs'
-// import SyntaxHighlighter from 'react-syntax-highlighter';
-// // import { docco } from 'react-syntax-highlighter/styles/hljs';
 
 const Container = styled.div`
   height: 100%;
@@ -93,7 +91,7 @@ export default class SecondPage extends React.Component {
   constructor(props) {
     super(props);
 
-    const file = require(`!babel-loader!../sketches/output/${this.props.data.file.fields.slug}.js`);
+    const file = require(`../sketches/output/${this.props.data.file.fields.slug}.js`);
 
     this.state = {
       file: file.default,

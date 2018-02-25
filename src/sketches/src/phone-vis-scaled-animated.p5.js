@@ -21,13 +21,16 @@ let angle;
 
 class Leaf {
   constructor(index, number, calls) {
-    // this.call = call;
+    //Hey
   }
 
-  draw() {
+  draw = () => {
     console.log("hey");
   }
 }
+
+let leaf = new Leaf("no", "no", "no");
+
 
 function drawLeaf(call) {
   let time = call.time.split(':');
@@ -82,9 +85,7 @@ function setup () {
 
   noFill();
   stroke(200);
-
-  let leaf = new Leaf("no", "no");
-  leaf.draw();
+  
   
 
   lineY =  height/2;
@@ -109,5 +110,5 @@ function setup () {
 
 
 function draw() {
-
+  leaf.draw();
 };

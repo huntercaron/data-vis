@@ -1,25 +1,6 @@
 import p5 from 'p5'
 
 export default function (sketch) {
-  var _createClass = function () {
-    function defineProperties(target, props) {
-      for (var i = 0; i < props.length; i++) {
-        var descriptor = props[i];
-        descriptor.enumerable = descriptor.enumerable || false;
-        descriptor.configurable = true;
-        if ('value' in descriptor)
-          descriptor.writable = true;
-        Object.defineProperty(target, descriptor.key, descriptor)
-      }
-    }
-    return function (Constructor, protoProps, staticProps) {
-      if (protoProps)
-        defineProperties(Constructor.prototype, protoProps);
-      if (staticProps)
-        defineProperties(Constructor, staticProps);
-      return Constructor
-    }
-  }();
   var records = require('../assets/phoneRecords.json');
   var uniqueArray = function uniqueArray(arr) {
     return [].concat(_toConsumableArray(new Set(arr)))
@@ -41,29 +22,13 @@ export default function (sketch) {
   var radius = void 0;
   var numPoints = void 0;
   var angle = void 0;
-  var Leaf = function () {
-    function Leaf(index, number, calls) {
-      _classCallCheck(this, Leaf)
+  var Leaf = function Leaf(index, number, calls) {
+    _classCallCheck(this, Leaf);
+    this.draw = function () {
+      console.log('hey')
     }
-    _createClass(Leaf, [{
-        key: 'draw',
-        value: function draw() {
-          console.log('hey')
-        }
-      }]);
-    return Leaf
-  }();
-  
-  function defineProperties(target, props) {
-    for (var i = 0; i < props.length; i++) {
-      var descriptor = props[i];
-      descriptor.enumerable = descriptor.enumerable || false;
-      descriptor.configurable = true;
-      if ('value' in descriptor)
-        descriptor.writable = true;
-      Object.defineProperty(target, descriptor.key, descriptor)
-    }
-  }
+  };
+  var leaf = new Leaf('no', 'no', 'no');
   
   function _classCallCheck(instance, Constructor) {
     if (!(instance instanceof Constructor)) {
@@ -80,10 +45,6 @@ export default function (sketch) {
     } else {
       return Array.from(arr)
     }
-  }
-  
-  function Leaf(index, number, calls) {
-    _classCallCheck(this, Leaf)
   }
   
   function drawLeaf(call) {
@@ -143,8 +104,6 @@ export default function (sketch) {
     }
     sketch.noFill();
     sketch.stroke(200);
-    var leaf = new Leaf('no', 'no');
-    leaf.draw();
     lineY = sketch.height / 2;
     radius = sketch.height * 0.4;
     numPoints = 32;
@@ -197,5 +156,6 @@ export default function (sketch) {
   };
   
   sketch.draw = function () {
+    leaf.draw()
   };
 }

@@ -91,17 +91,22 @@ export default class SecondPage extends React.Component {
 
     const file = require(`!babel-loader!../sketches/output/${this.props.data.file.fields.slug}.js`);
 
-    this.file = file.default;
-
     this.state = {
+      file: file.default,
       panelOpen: false
     }
   }
 
   componentDidMount() {
-    this.mount.innerHTML = "";
     window.addEventListener("resize", this.updateDimensions);
-    this.forceUpdate()
+  }
+  
+  componentWillReceiveProps() {
+    if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+      this.setState({
+        file: require(`!babel-loader!../sketches/output/${this.props.data.file.fields.slug}.js`).default
+      })
+    }
   }
 
   componentWillUnmount() {
@@ -122,7 +127,7 @@ export default class SecondPage extends React.Component {
   render() {
     if (this.mount) {
       this.mount.innerHTML = "";
-      var myp5 = new p5(this.file, this.mount);
+      var myp5 = new p5(this.state.file, this.mount);
     }
 
     return (
@@ -140,7 +145,7 @@ export default class SecondPage extends React.Component {
 
            <CodeContainer>
              {/* <Code language='javascript' style={docco}>{this.props.data.file.fields.code}</Code>; */}
-             <Code dangerouslySetInnerHTML={{ __html: Prism.highlight(this.props.data.file.fields.code, Prism.languages.javascript) }}/>
+             <Code dangerouslySetInnerHTML={{ __html: Prism.highlight(this.props.data.file.fields.code || "console.log('error')", Prism.languages.javascript) }}/>
            </CodeContainer>
 
          </CodePanel>

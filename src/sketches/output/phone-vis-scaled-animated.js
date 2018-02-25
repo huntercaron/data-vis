@@ -1,28 +1,98 @@
 import p5 from 'p5'
 
 export default function (sketch) {
-  const records = require('../assets/phoneRecords.json');
-  const uniqueArray = arr => [...new Set(arr)];
-  const propArray = (data, value) => data.map(node => node[value]);
-  const uniqueObj = (data, value) => uniqueArray(propArray(data, value));
-  let callsByNumber = [];
-  let n = 0;
-  const maxLength = Math.max(...propArray(records, 'length'));
-  let curve;
-  let revCurve;
-  let lineY;
-  let radius;
-  let numPoints;
-  let angle;
+  var _createClass = function () {
+    function defineProperties(target, props) {
+      for (var i = 0; i < props.length; i++) {
+        var descriptor = props[i];
+        descriptor.enumerable = descriptor.enumerable || false;
+        descriptor.configurable = true;
+        if ('value' in descriptor)
+          descriptor.writable = true;
+        Object.defineProperty(target, descriptor.key, descriptor)
+      }
+    }
+    return function (Constructor, protoProps, staticProps) {
+      if (protoProps)
+        defineProperties(Constructor.prototype, protoProps);
+      if (staticProps)
+        defineProperties(Constructor, staticProps);
+      return Constructor
+    }
+  }();
+  var records = require('../assets/phoneRecords.json');
+  var uniqueArray = function uniqueArray(arr) {
+    return [].concat(_toConsumableArray(new Set(arr)))
+  };
+  var propArray = function propArray(data, value) {
+    return data.map(function (node) {
+      return node[value]
+    })
+  };
+  var uniqueObj = function uniqueObj(data, value) {
+    return uniqueArray(propArray(data, value))
+  };
+  var callsByNumber = [];
+  var n = 0;
+  var maxLength = Math.max.apply(Math, _toConsumableArray(propArray(records, 'length')));
+  var curve = void 0;
+  var revCurve = void 0;
+  var lineY = void 0;
+  var radius = void 0;
+  var numPoints = void 0;
+  var angle = void 0;
+  var Leaf = function () {
+    function Leaf(index, number, calls) {
+      _classCallCheck(this, Leaf)
+    }
+    _createClass(Leaf, [{
+        key: 'draw',
+        value: function draw() {
+          console.log('hey')
+        }
+      }]);
+    return Leaf
+  }();
+  
+  function defineProperties(target, props) {
+    for (var i = 0; i < props.length; i++) {
+      var descriptor = props[i];
+      descriptor.enumerable = descriptor.enumerable || false;
+      descriptor.configurable = true;
+      if ('value' in descriptor)
+        descriptor.writable = true;
+      Object.defineProperty(target, descriptor.key, descriptor)
+    }
+  }
+  
+  function _classCallCheck(instance, Constructor) {
+    if (!(instance instanceof Constructor)) {
+      throw new TypeError('Cannot call a class as a function')
+    }
+  }
+  
+  function _toConsumableArray(arr) {
+    if (Array.isArray(arr)) {
+      for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) {
+        arr2[i] = arr[i]
+      }
+      return arr2
+    } else {
+      return Array.from(arr)
+    }
+  }
+  
+  function Leaf(index, number, calls) {
+    _classCallCheck(this, Leaf)
+  }
   
   function drawLeaf(call) {
-    let time = call.time.split(':');
-    let minutes = +time[0] * 60 + +time[1];
-    let amp = 120;
+    var time = call.time.split(':');
+    var minutes = +time[0] * 60 + +time[1];
+    var amp = 120;
     curve = minutes / 1440 * amp;
     revCurve = minutes / 1440 * -amp;
     sketch.stroke(255, sketch.map(call.length, 1, maxLength, 120, 255));
-    sketch.stroke(sketch.map(call.length, 1, maxLength, 79, 35), sketch.map(call.length, 1, maxLength, 104, 200), sketch.map(call.length, 1, maxLength, 250, 100), sketch.map(call.length, 1, maxLength, 50, 40));
     sketch.fill(sketch.map(call.length, 1, maxLength, 79, 35), sketch.map(call.length, 1, maxLength, 104, 200), sketch.map(call.length, 1, maxLength, 250, 100), 20);
     sketch.strokeWeight(0.7);
     sketch.noStroke();
@@ -40,22 +110,88 @@ export default function (sketch) {
     sketch.height = sketch.windowHeight;
     sketch.angleMode(sketch.DEGREES);
     sketch.background(0);
-    for (let phoneNum of uniqueObj(records, 'phoneNum')) {
-      if (records.filter(r => r.phoneNum === phoneNum)) {
-        callsByNumber.push(records.filter(r => r.phoneNum === phoneNum))
+    var _loop = function _loop(phoneNum) {
+      if (records.filter(function (r) {
+          return r.phoneNum === phoneNum
+        })) {
+        callsByNumber.push(records.filter(function (r) {
+          return r.phoneNum === phoneNum
+        }))
+      }
+    };
+    var _iteratorNormalCompletion = true;
+    var _didIteratorError = false;
+    var _iteratorError = undefined;
+    try {
+      for (var _iterator = uniqueObj(records, 'phoneNum')[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+        var phoneNum = _step.value;
+        _loop(phoneNum)
+      }
+    } catch (err) {
+      _didIteratorError = true;
+      _iteratorError = err
+    } finally {
+      try {
+        if (!_iteratorNormalCompletion && _iterator.return) {
+          _iterator.return()
+        }
+      } finally {
+        if (_didIteratorError) {
+          throw _iteratorError
+        }
       }
     }
     sketch.noFill();
     sketch.stroke(200);
+    var leaf = new Leaf('no', 'no');
+    leaf.draw();
     lineY = sketch.height / 2;
     radius = sketch.height * 0.4;
     numPoints = 32;
     angle = sketch.TWO_PI / numPoints;
     sketch.translate(sketch.width / 2, sketch.height / 2);
-    for (let number of callsByNumber) {
-      for (let call of number) {
-        sketch.rotate(360 / callsByNumber.length);
-        drawLeaf(call)
+    var _iteratorNormalCompletion2 = true;
+    var _didIteratorError2 = false;
+    var _iteratorError2 = undefined;
+    try {
+      for (var _iterator2 = callsByNumber[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+        var number = _step2.value;
+        var _iteratorNormalCompletion3 = true;
+        var _didIteratorError3 = false;
+        var _iteratorError3 = undefined;
+        try {
+          for (var _iterator3 = number[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+            var call = _step3.value;
+            sketch.rotate(360 / callsByNumber.length);
+            drawLeaf(call)
+          }
+        } catch (err) {
+          _didIteratorError3 = true;
+          _iteratorError3 = err
+        } finally {
+          try {
+            if (!_iteratorNormalCompletion3 && _iterator3.return) {
+              _iterator3.return()
+            }
+          } finally {
+            if (_didIteratorError3) {
+              throw _iteratorError3
+            }
+          }
+        }
+      }
+    } catch (err) {
+      _didIteratorError2 = true;
+      _iteratorError2 = err
+    } finally {
+      try {
+        if (!_iteratorNormalCompletion2 && _iterator2.return) {
+          _iterator2.return()
+        }
+      } finally {
+        if (_didIteratorError2) {
+          throw _iteratorError2
+        }
       }
     }
   };

@@ -1,7 +1,7 @@
 
 export default function (sketch) {
-  let current;
-  let previous;
+  var current = void 0;
+  var previous = void 0;
   
   sketch.setup = function () {
     sketch.createCanvas(sketch.windowWidth, sketch.windowHeight);

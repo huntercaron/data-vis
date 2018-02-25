@@ -22,10 +22,7 @@ exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
     		value: node.name.replace(".p5", "")
     	});
 
-			fs.readFile(
-				"./src/sketches/" + node.relativePath,
-				"utf8",
-				(err, data) => {
+			fs.readFile("./src/sketches/" + node.relativePath, "utf8",(err, data) => {
           createNodeField({
             node,
             name: "code",
@@ -49,13 +46,11 @@ exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
 						});
 					}
 					
+					let transformedData = babel.transform(data, { "presets": ["env"] }).code;
 
+					let sketch = p5Convert(transformedData);
 
 					
-
-					let sketch = p5Convert(data);
-
-					let compiledData = babel.transform(sketch, {"presets": ["env"]});
 					
 					fs.writeFile(
 						sketchOutputPath + node.name.replace(".p5", "") + ".js",

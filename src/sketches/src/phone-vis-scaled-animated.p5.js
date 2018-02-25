@@ -19,6 +19,16 @@ let radius;
 let numPoints;
 let angle;
 
+class Leaf {
+  constructor(index, number, calls) {
+    // this.call = call;
+  }
+
+  draw() {
+    console.log("hey");
+  }
+}
+
 function drawLeaf(call) {
   let time = call.time.split(':');
   let minutes = (+time[0]) * 60 + (+time[1]);
@@ -29,12 +39,6 @@ function drawLeaf(call) {
 
   stroke(255,  map(call.length, 1, maxLength, 120, 255));
 
-  stroke(
-   map(call.length, 1, maxLength, 79, 35),
-   map(call.length, 1, maxLength, 104, 200),
-   map(call.length, 1, maxLength, 250, 100),
-   map(call.length, 1, maxLength, 50, 40)
-  );
 
   fill(
     map(call.length, 1, maxLength, 79, 35),
@@ -78,6 +82,9 @@ function setup () {
 
   noFill();
   stroke(200);
+
+  let leaf = new Leaf("no", "no");
+  leaf.draw();
   
 
   lineY =  height/2;

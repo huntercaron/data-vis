@@ -29,6 +29,7 @@ const CodePanel = styled.div`
   background-color: white;
   z-index: 1;
   transform: translateY(${props => props.panelOpen ? "0" : "calc(100% - 40px)"});
+  overflow: show;
 
   transition: all 250ms ease-out;
 `
@@ -82,7 +83,10 @@ const Code = styled.code`
   max-width: 850px;
   height: 100%;
   width: 100%;
-
+  
+  span:last-of-type {
+    padding-bottom: 20rem;
+  }
 `
 
 export default class SecondPage extends React.Component {

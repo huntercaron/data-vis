@@ -29,6 +29,7 @@ const LinkContainer = styled.li`
 const LinkText = styled(Link)`
   font-style: italic;
   color: black;
+  text-transform: capitalize;
 
   &:hover {
     text-decoration: none;
@@ -68,7 +69,7 @@ export default function IndexPage({ data }) {
           {sketches.map( ({ node: page }, i) => (
             <PageLink
               to={page.fields.slug}
-              title={page.fields.slug.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()})}
+              title={page.fields.title}
               key={page.id}
             />
           ))}
@@ -120,6 +121,7 @@ export const query = graphql`
           birthtime(formatString: "DD MMMM, YYYY")
           fields {
             slug
+            title
           }
         }
       }

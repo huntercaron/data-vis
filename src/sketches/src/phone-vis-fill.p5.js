@@ -34,6 +34,13 @@ function drawLeaf(call) {
    map(call.length, 1, maxLength, 100, 255)
   );
 
+  fill(
+    map(call.length, 1, maxLength, 79, 35),
+    map(call.length, 1, maxLength, 104, 200),
+    map(call.length, 1, maxLength, 250, 100),
+    20
+  );
+
   // stroke(
   //  map(minutes, 0, 1440, 79, 35),
   //  map(minutes, 0, 1440, 104, 200),
@@ -42,10 +49,14 @@ function drawLeaf(call) {
   // );
 
   strokeWeight(0.7);
+  noStroke();
   // strokeWeight( map(call.length, 1, maxLength, 0.5, 1));
   //line(0,0, radius, 0)
+  beginShape();
   bezier(0, 0, radius/4, 0-curve, radius/4*3, 0-curve, radius, 0);
   bezier(0, 0, radius/4, 0-revCurve, radius/4*3, 0-revCurve, radius, 0);
+  endShape(p5.CLOSE);
+  // fill(255,10);
 }
 
 function setup () {

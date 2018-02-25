@@ -22,9 +22,6 @@ exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
     		value: node.name.replace(".p5", "")
     	});
 
-      console.log();
-      console.log(node.name.replace(".p5", ""));
-
 			fs.readFile(
 				"./src/sketches/" + node.relativePath,
 				"utf8",
@@ -35,9 +32,31 @@ exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
             value: data
           });
 
+					let firstLine = data.split('\n')[0];
+
+					if (firstLine.includes("TITLE:")) {
+						createNodeField({
+							node,
+							name: `title`,
+							value: firstLine.substring(firstLine.indexOf("TITLE:") + 7)
+						});
+					} else {
+						createNodeField({
+							node,
+							name: `title`,
+							value: node.name.replace(".p5", "")
+							//maybe use .replace(/-/g, " ")
+						});
+					}
+					
+
+
+					
+
 					let sketch = p5Convert(data);
 
 					let compiledData = babel.transform(sketch, {"presets": ["env"]});
+					
 					fs.writeFile(
 						sketchOutputPath + node.name.replace(".p5", "") + ".js",
 						sketch

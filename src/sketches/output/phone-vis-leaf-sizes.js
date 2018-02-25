@@ -38,14 +38,14 @@ export default function (sketch) {
       }
     }
     sketch.noFill();
-    sketch.stroke(255);
+    sketch.stroke(200);
     lineY = sketch.height / 2;
     radius = sketch.height * 0.4;
     numPoints = 32;
     angle = sketch.TWO_PI / numPoints;
     sketch.translate(sketch.width / 2, sketch.height / 2);
     for (let number of callsByNumber) {
-      radius = sketch.height * 0.4 + number.length * 5;
+      radius = sketch.height * 0.2 + number.length * 5;
       for (let call of number) {
         sketch.rotate(360 / callsByNumber.length);
         drawLeaf(call)

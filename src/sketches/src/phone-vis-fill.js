@@ -11,6 +11,7 @@ const maxLength = Math.max(...propArray(records, 'length'));
 let curve;
 let revCurve;
 
+
 let lineY;
 let radius;
 let numPoints;
@@ -24,7 +25,6 @@ function drawLeaf(call) {
   curve = (minutes/1440)*amp;
   revCurve = (minutes/1440)*-amp;
 
-
   stroke(255,  map(call.length, 1, maxLength, 120, 255));
 
   stroke(
@@ -33,7 +33,6 @@ function drawLeaf(call) {
    map(call.length, 1, maxLength, 250, 100),
    map(call.length, 1, maxLength, 100, 255)
   );
-
 
   // stroke(
   //  map(minutes, 0, 1440, 79, 35),
@@ -74,7 +73,7 @@ function setup () {
 
 
   for (let number of callsByNumber) {
-    radius = height*0.2 + number.length*5;
+    // radius = height*0.2 + number.length*5;
     for (let call of number) {
       rotate(360/callsByNumber.length);
       drawLeaf(call);

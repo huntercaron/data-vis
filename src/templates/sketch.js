@@ -99,6 +99,10 @@ export default class SecondPage extends React.Component {
 
   componentDidMount() {
     window.addEventListener("resize", this.updateDimensions);
+
+    this.setState({
+      file: require(`!babel-loader!../sketches/output/${this.props.data.file.fields.slug}.js`).default
+    })
   }
   
   componentWillReceiveProps() {

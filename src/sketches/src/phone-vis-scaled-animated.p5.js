@@ -57,6 +57,7 @@ class Leaf {
     sketch.noStroke();
     sketch.push();
     sketch.scale(call.length * 0.015+ 1)
+    
     sketch.beginShape();
     sketch.bezier(0, 0, radius / 4, 0 - curve, radius / 4 * 3, 0 - curve, radius, 0);
     sketch.bezier(0, 0, radius / 4, 0 - revCurve, radius / 4 * 3, 0 - revCurve, radius, 0);

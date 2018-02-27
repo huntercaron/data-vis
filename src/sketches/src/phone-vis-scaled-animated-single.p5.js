@@ -60,7 +60,7 @@ class Leaf {
     sketch.noStroke();
     sketch.push();
     let scale = (call.length * 0.015 + 1);
-    let mappedScale = sketch.map(sketch.frameCount, 0, 1000, 0, scale)
+    let mappedScale = sketch.map(sketch.frameCount, 0, 800, 0, scale)
     sketch.scale(mappedScale)
 
     sketch.beginShape();

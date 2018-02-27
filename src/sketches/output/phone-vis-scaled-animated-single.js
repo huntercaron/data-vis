@@ -63,7 +63,7 @@ export default function (sketch) {
       sketch.noStroke();
       sketch.push();
       var scale = call.length * 0.015 + 1;
-      var mappedScale = sketch.map(sketch.frameCount, 0, 1000, 0, scale);
+      var mappedScale = sketch.map(sketch.frameCount, 0, 800, 0, scale);
       sketch.scale(mappedScale);
       sketch.beginShape();
       sketch.bezier(0, 0, radius / 4, 0 - curve, radius / 4 * 3, 0 - curve, radius, 0);

@@ -1,4 +1,4 @@
-// TITLE: Phone-Vis: Scaled & Animated Single
+// TITLE: Phone-Vis: Scaled & Animated - Rebuild
 
 const records = require('../assets/phoneRecords.json');
 
@@ -60,9 +60,7 @@ class Leaf {
     sketch.noStroke();
     sketch.push();
     let scale = (call.length * 0.015 + 1);
-    let mappedScale = sketch.map(sketch.frameCount, 0, 200, 0, scale)
-
-    sketch.scale((sketch.frameCount < 200) ? mappedScale : scale);
+    sketch.scale(scale)
 
     sketch.beginShape();
     sketch.bezier(0, 0, radius / 4, 0 - curve, radius / 4 * 3, 0 - curve, radius, 0);
@@ -98,19 +96,17 @@ function setup () {
   angle =  TWO_PI/numPoints;
 
 
-
-};
-
-
-function draw() {
-  currentNum = frameCount/animFrames;
-
-
   translate(width / 2, height / 2);
 
   for (let leaf of leaves) {
     rotate(360 / leaves.length);
     leaf.draw();
   }
+
+};
+
+
+function draw() {
+
   
 };

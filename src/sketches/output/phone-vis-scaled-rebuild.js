@@ -63,8 +63,7 @@ export default function (sketch) {
       sketch.noStroke();
       sketch.push();
       var scale = call.length * 0.015 + 1;
-      var mappedScale = sketch.map(sketch.frameCount, 0, 200, 0, scale);
-      sketch.scale(sketch.frameCount < 200 ? mappedScale : scale);
+      sketch.scale(scale);
       sketch.beginShape();
       sketch.bezier(0, 0, radius / 4, 0 - curve, radius / 4 * 3, 0 - curve, radius, 0);
       sketch.bezier(0, 0, radius / 4, 0 - revCurve, radius / 4 * 3, 0 - revCurve, radius, 0);
@@ -136,11 +135,7 @@ export default function (sketch) {
     lineY = sketch.height / 2;
     radius = sketch.height * 0.4;
     numPoints = 32;
-    angle = sketch.TWO_PI / numPoints
-  };
-  
-  sketch.draw = function () {
-    currentNum = sketch.frameCount / animFrames;
+    angle = sketch.TWO_PI / numPoints;
     sketch.translate(sketch.width / 2, sketch.height / 2);
     var _iteratorNormalCompletion3 = true;
     var _didIteratorError3 = false;
@@ -165,5 +160,8 @@ export default function (sketch) {
         }
       }
     }
+  };
+  
+  sketch.draw = function () {
   };
 }

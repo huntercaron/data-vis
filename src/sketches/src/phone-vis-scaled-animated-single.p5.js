@@ -60,9 +60,10 @@ class Leaf {
     sketch.noStroke();
     sketch.push();
     let scale = (call.length * 0.015 + 1);
-    let mappedScale = sketch.map(sketch.frameCount, 0, 200, 0, scale)
+    let animThisFrames = 100+(this.calls.length/8*80);
+    let mappedScale = sketch.map(sketch.frameCount, 0, animThisFrames, 0, scale)
 
-    sketch.scale((sketch.frameCount < 200) ? mappedScale : scale);
+    sketch.scale((sketch.frameCount < animThisFrames) ? mappedScale : scale);
 
     sketch.beginShape();
     sketch.bezier(0, 0, radius / 4, 0 - curve, radius / 4 * 3, 0 - curve, radius, 0);

@@ -71,7 +71,8 @@ export default function (sketch) {
       console.log(_this.number, _this.calls)
     };
     this.number = number;
-    this.calls = calls
+    this.calls = calls;
+    this.radius = 0
   };
   
   function _classCallCheck(instance, Constructor) {

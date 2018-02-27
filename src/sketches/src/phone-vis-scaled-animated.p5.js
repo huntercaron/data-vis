@@ -24,6 +24,7 @@ class Leaf {
   constructor(number, calls) {
     this.number = number;
     this.calls = calls;
+    this.radius = 0;
   }
 
   draw = () => {
@@ -57,7 +58,7 @@ class Leaf {
     sketch.noStroke();
     sketch.push();
     sketch.scale(call.length * 0.015+ 1)
-    
+
     sketch.beginShape();
     sketch.bezier(0, 0, radius / 4, 0 - curve, radius / 4 * 3, 0 - curve, radius, 0);
     sketch.bezier(0, 0, radius / 4, 0 - revCurve, radius / 4 * 3, 0 - revCurve, radius, 0);
@@ -85,8 +86,6 @@ function setup () {
 
   noFill();
   stroke(200);
-  
-  
 
   lineY =  height/2;
   radius = height*0.4;
@@ -95,14 +94,10 @@ function setup () {
 
   translate( width/2,  height/2);
 
-
   for (let leaf of leaves) {
     rotate(360 / leaves.length);
     leaf.draw();
   }
-
-
-
 };
 
 

@@ -141,6 +141,7 @@ export default function (sketch) {
   
   sketch.draw = function () {
     currentNum = sketch.frameCount / animFrames;
+    sketch.background(0);
     sketch.translate(sketch.width / 2, sketch.height / 2);
     var _iteratorNormalCompletion3 = true;
     var _didIteratorError3 = false;

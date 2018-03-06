@@ -1,4 +1,4 @@
-// TITLE: Phone-Vis: Dual Flipped & Animated [Static]
+// TITLE: Phone-Vis: Dual Flipped [Static]
 
 const records = require('../assets/phoneRecords.json');
 
@@ -50,7 +50,7 @@ class Leaf {
       sketch.map(this.calls.length, 1, maxLength, 79, 35),
       sketch.map(this.calls.length, 1, maxLength, 104, 200),
       sketch.map(this.calls.length, 1, maxLength, 250, 100),
-      200
+      120
     );
 
     sketch.strokeWeight(0.6);
@@ -67,7 +67,7 @@ class Leaf {
     // console.log(maxCalls);
     
     // console.log(sketch.map(this.calls.length, 0, maxCalls, 0, 1));
-    sketch.scale(sketch.map(this.calls.length, 0, maxCalls, 0, 0.5) + 0.5);
+    sketch.scale(sketch.map(this.calls.length, 0, maxCalls, 0, 0.6) + 0.9);
     
     sketch.beginShape();
     sketch.bezier(0, 0, radius / 4, 0 - curve, radius / 4 * 3, 0 - curve, radius, 0);
@@ -98,7 +98,7 @@ class Leaf {
 
     sketch.noStroke();
     sketch.push();
-    let scale = ( sketch.map(call.length, 1, maxLength, 0, 1) + 0.5);
+    let scale = (sketch.map(call.length, 1, maxLength, 0, 0.6) + 0.9);
     let animThisFrames = 100+(this.calls.length/8*80);
     let mappedScale = sketch.map(sketch.frameCount, 0, animThisFrames, 0, scale)
 

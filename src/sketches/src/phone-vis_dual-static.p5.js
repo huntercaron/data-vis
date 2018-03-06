@@ -1,4 +1,4 @@
-// TITLE: Phone-Vis: Dual & Animated [Static]
+// TITLE: Phone-Vis: Dual [Static]
 
 const records = require('../assets/phoneRecords.json');
 

@@ -58,7 +58,7 @@ export default function (sketch) {
       var amp = 120;
       curve = 1 * amp;
       revCurve = 1 * -amp;
-      sketch.stroke(sketch.map(_this.calls.length, 1, maxLength, 79, 35), sketch.map(_this.calls.length, 1, maxLength, 104, 200), sketch.map(_this.calls.length, 1, maxLength, 250, 100), 200);
+      sketch.stroke(sketch.map(_this.calls.length, 1, maxLength, 79, 35), sketch.map(_this.calls.length, 1, maxLength, 104, 200), sketch.map(_this.calls.length, 1, maxLength, 250, 100), 120);
       sketch.strokeWeight(0.6);
       sketch.noFill();
       sketch.push();
@@ -67,7 +67,7 @@ export default function (sketch) {
         return a + b
       });
       var scale = totalMinutes * 0.01 + 0.1;
-      sketch.scale(sketch.map(_this.calls.length, 0, maxCalls, 0, 0.5) + 0.5);
+      sketch.scale(sketch.map(_this.calls.length, 0, maxCalls, 0, 0.6) + 0.9);
       sketch.beginShape();
       sketch.bezier(0, 0, radius / 4, 0 - curve, radius / 4 * 3, 0 - curve, radius, 0);
       sketch.bezier(0, 0, radius / 4, 0 - revCurve, radius / 4 * 3, 0 - revCurve, radius, 0);
@@ -83,7 +83,7 @@ export default function (sketch) {
       sketch.fill(sketch.map(call.length, 1, maxLength, 79, 35), sketch.map(call.length, 1, maxLength, 104, 200), sketch.map(call.length, 1, maxLength, 250, 100), 20);
       sketch.noStroke();
       sketch.push();
-      var scale = sketch.map(call.length, 1, maxLength, 0, 1) + 0.5;
+      var scale = sketch.map(call.length, 1, maxLength, 0, 0.6) + 0.9;
       var animThisFrames = 100 + _this.calls.length / 8 * 80;
       var mappedScale = sketch.map(sketch.frameCount, 0, animThisFrames, 0, scale);
       sketch.scale(20000 < animThisFrames ? mappedScale : scale);

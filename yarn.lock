@@ -2559,6 +2559,10 @@ dashdash@^1.12.0:
   dependencies:
     assert-plus "^1.0.0"
 
+dat.gui@^0.7.1:
+  version "0.7.1"
+  resolved "https://registry.yarnpkg.com/dat.gui/-/dat.gui-0.7.1.tgz#ff3f27c1029289840700f463748ec26df6269a70"
+
 data-uri-to-buffer@0.0.4:
   version "0.0.4"
   resolved "https://registry.yarnpkg.com/data-uri-to-buffer/-/data-uri-to-buffer-0.0.4.tgz#46e13ab9da8e309745c8d01ce547213ebdb2fe3f"

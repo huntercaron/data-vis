@@ -135,7 +135,7 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
 exports.modifyWebpackConfig = ({ config, stage }) => {
   if (stage === "build-html") {
     config.loader("null", {
-      test: /p5/,
+			test: /p5|dat\.gui/,
       loader: "null-loader",
     });
   }

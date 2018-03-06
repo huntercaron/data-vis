@@ -33,32 +33,13 @@ export default function (sketch) {
     var _this = this;
     _classCallCheck(this, Leaf);
     this.draw = function () {
-      var _iteratorNormalCompletion = true;
-      var _didIteratorError = false;
-      var _iteratorError = undefined;
-      try {
-        for (var _iterator = _this.calls[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-          var call = _step.value;
-          _this.drawCall(call)
-        }
-      } catch (err) {
-        _didIteratorError = true;
-        _iteratorError = err
-      } finally {
-        try {
-          if (!_iteratorNormalCompletion && _iterator.return) {
-            _iterator.return()
-          }
-        } finally {
-          if (_didIteratorError) {
-            throw _iteratorError
-          }
-        }
+      for (var call in _this.calls) {
+        _this.drawCall(_this.calls[call], call)
       }
       var amp = 120;
       curve = 1 * amp;
       revCurve = 1 * -amp;
-      sketch.stroke(sketch.map(_this.calls.length, 1, maxLength, 79, 35), sketch.map(_this.calls.length, 1, maxLength, 104, 200), sketch.map(_this.calls.length, 1, maxLength, 250, 100), 200);
+      sketch.stroke(sketch.map(_this.calls.length, 1, maxLength, 79, 35), sketch.map(_this.calls.length, 1, maxLength, 104, 200), sketch.map(_this.calls.length, 1, maxLength, 250, 100), 150);
       sketch.strokeWeight(0.6);
       sketch.noFill();
       sketch.push();
@@ -67,14 +48,14 @@ export default function (sketch) {
         return a + b
       });
       var scale = totalMinutes * 0.01 + 0.1;
-      sketch.scale(sketch.map(totalMinutes, minTotalLength, maxTotalLength, 0, 1) + 0.5);
+      sketch.scale(sketch.map(totalMinutes, minTotalLength, maxTotalLength, 0, 0.5) + 0.8);
       sketch.beginShape();
       sketch.bezier(0, 0, radius / 4, 0 - curve, radius / 4 * 3, 0 - curve, radius, 0);
       sketch.bezier(0, 0, radius / 4, 0 - revCurve, radius / 4 * 3, 0 - revCurve, radius, 0);
       sketch.endShape(sketch.CLOSE);
       sketch.pop()
     };
-    this.drawCall = function (call) {
+    this.drawCall = function (call, index) {
       var time = call.time.split(':');
       var minutes = +time[0] * 60 + +time[1];
       var amp = 120;
@@ -83,7 +64,8 @@ export default function (sketch) {
       sketch.fill(sketch.map(call.length, 1, maxLength, 79, 35), sketch.map(call.length, 1, maxLength, 104, 200), sketch.map(call.length, 1, maxLength, 250, 100), 20);
       sketch.noStroke();
       sketch.push();
-      var scale = sketch.map(call.length, 1, maxLength, 0, 1) + 0.5;
+      console.log(index);
+      var scale = sketch.map(index, 0, maxCalls, 0, 0.5) + 0.8;
       var animThisFrames = 100 + _this.calls.length / 8 * 80;
       var mappedScale = sketch.map(sketch.frameCount, 0, animThisFrames, 0, scale);
       sketch.scale(20000 < animThisFrames ? mappedScale : scale);
@@ -131,25 +113,25 @@ export default function (sketch) {
         })))
       }
     };
-    var _iteratorNormalCompletion2 = true;
-    var _didIteratorError2 = false;
-    var _iteratorError2 = undefined;
+    var _iteratorNormalCompletion = true;
+    var _didIteratorError = false;
+    var _iteratorError = undefined;
     try {
-      for (var _iterator2 = uniqueObj(records, 'phoneNum')[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-        var phoneNum = _step2.value;
+      for (var _iterator = uniqueObj(records, 'phoneNum')[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+        var phoneNum = _step.value;
         _loop(phoneNum)
       }
     } catch (err) {
-      _didIteratorError2 = true;
-      _iteratorError2 = err
+      _didIteratorError = true;
+      _iteratorError = err
     } finally {
       try {
-        if (!_iteratorNormalCompletion2 && _iterator2.return) {
-          _iterator2.return()
+        if (!_iteratorNormalCompletion && _iterator.return) {
+          _iterator.return()
         }
       } finally {
-        if (_didIteratorError2) {
-          throw _iteratorError2
+        if (_didIteratorError) {
+          throw _iteratorError
         }
       }
     }
@@ -160,9 +142,9 @@ export default function (sketch) {
     });
     maxTotalLength = Math.max.apply(Math, _toConsumableArray(totalLengths));
     minTotalLength = Math.min.apply(Math, _toConsumableArray(totalLengths));
-    maxCalls = leaves.map(function (node) {
+    maxCalls = Math.max.apply(Math, _toConsumableArray(leaves.map(function (node) {
       return node.calls.length
-    });
+    })));
     sketch.noFill();
     sketch.stroke(200);
     lineY = sketch.height / 2;
@@ -175,26 +157,26 @@ export default function (sketch) {
     currentNum = sketch.frameCount / animFrames;
     sketch.background(0);
     sketch.translate(sketch.width / 2, sketch.height / 2);
-    var _iteratorNormalCompletion3 = true;
-    var _didIteratorError3 = false;
-    var _iteratorError3 = undefined;
+    var _iteratorNormalCompletion2 = true;
+    var _didIteratorError2 = false;
+    var _iteratorError2 = undefined;
     try {
-      for (var _iterator3 = leaves[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-        var leaf = _step3.value;
+      for (var _iterator2 = leaves[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+        var leaf = _step2.value;
         sketch.rotate(360 / leaves.length);
         leaf.draw()
       }
     } catch (err) {
-      _didIteratorError3 = true;
-      _iteratorError3 = err
+      _didIteratorError2 = true;
+      _iteratorError2 = err
     } finally {
       try {
-        if (!_iteratorNormalCompletion3 && _iterator3.return) {
-          _iterator3.return()
+        if (!_iteratorNormalCompletion2 && _iterator2.return) {
+          _iterator2.return()
         }
       } finally {
-        if (_didIteratorError3) {
-          throw _iteratorError3
+        if (_didIteratorError2) {
+          throw _iteratorError2
         }
       }
     }

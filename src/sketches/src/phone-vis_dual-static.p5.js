@@ -37,8 +37,8 @@ class Leaf {
   }
 
   draw = () => {
-    for (let call of this.calls) {      
-      this.drawCall(call);
+    for (let call in this.calls) {      
+      this.drawCall(this.calls[call], call);
     }
 
     let amp = 120;
@@ -50,7 +50,7 @@ class Leaf {
       sketch.map(this.calls.length, 1, maxLength, 79, 35),
       sketch.map(this.calls.length, 1, maxLength, 104, 200),
       sketch.map(this.calls.length, 1, maxLength, 250, 100),
-      200
+      150
     );
 
     sketch.strokeWeight(0.6);
@@ -64,7 +64,7 @@ class Leaf {
     
     
     let scale = (totalMinutes * 0.01 + 0.1);
-    sketch.scale(sketch.map(totalMinutes, minTotalLength, maxTotalLength, 0, 1) + 0.5);
+    sketch.scale(sketch.map(totalMinutes, minTotalLength, maxTotalLength, 0, 0.5) + 0.8);
     
     sketch.beginShape();
     sketch.bezier(0, 0, radius / 4, 0 - curve, radius / 4 * 3, 0 - curve, radius, 0);
@@ -73,7 +73,7 @@ class Leaf {
     sketch.pop();
   }
 
-  drawCall = (call) => {
+  drawCall = (call, index) => {
     let time = call.time.split(':');
     let minutes = (+time[0]) * 60 + (+time[1]);
 
@@ -95,7 +95,9 @@ class Leaf {
 
     sketch.noStroke();
     sketch.push();
-    let scale = ( sketch.map(call.length, 1, maxLength, 0, 1) + 0.5);
+    console.log(index);
+    
+    let scale = ( sketch.map(index, 0, maxCalls, 0, 0.5) + 0.8);
     let animThisFrames = 100+(this.calls.length/8*80);
     let mappedScale = sketch.map(sketch.frameCount, 0, animThisFrames, 0, scale)
 
@@ -129,7 +131,7 @@ function setup () {
   totalLengths = leaves.map(node => propArray(node["calls"], "length").reduce((a, b) => a + b));
   maxTotalLength = Math.max(...totalLengths);
   minTotalLength = Math.min(...totalLengths);
-  maxCalls = leaves.map(node => node.calls.length);
+  maxCalls = Math.max(...leaves.map(node => node.calls.length));
 
   noFill();
   stroke(200);

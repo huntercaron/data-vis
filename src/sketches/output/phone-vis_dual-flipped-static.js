@@ -59,7 +59,7 @@ export default function (sketch) {
       curve = 1 * amp;
       revCurve = 1 * -amp;
       sketch.stroke(sketch.map(_this.calls.length, 1, maxLength, 79, 35), sketch.map(_this.calls.length, 1, maxLength, 104, 200), sketch.map(_this.calls.length, 1, maxLength, 250, 100), 120);
-      sketch.strokeWeight(0.6);
+      sketch.strokeWeight(0.8);
       sketch.noFill();
       sketch.push();
       var callLengths = propArray(_this.calls, 'length');

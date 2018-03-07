@@ -101,6 +101,7 @@ class Leaf {
     sketch.noStroke();
     sketch.push();
     let scale = (sketch.map(call.length, 1, maxLength, 0, 0.6) + 0.9);
+    // let scale = (sketch.map(call.length, 1, maxLength, 0, 0.5) + 0.6);
     // let animThisFrames = 100+(this.calls.length/8*80);
     let animThisFrames = 200-call.length*2;
     let animBaseFrames = index*20;
@@ -153,7 +154,7 @@ function setup () {
 
 function draw() {
   currentNum = frameCount/animFrames;
-  background(0);
+  background(255);
 
   translate(width / 2, height / 2);
 

@@ -53,7 +53,7 @@ class Leaf {
       120
     );
 
-    sketch.strokeWeight(0.6);
+    sketch.strokeWeight(0.8);
     sketch.noFill();
     sketch.push();
     

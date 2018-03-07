@@ -27,18 +27,17 @@ const SketchContainer = styled.div`
 const Title = styled.h1`
   margin: 0;
   font-size: ${fontSize};
-
-  span {
-    opacity: 0.75;
-  }
+  display: inline;
 `
 
-const SubTitle = styled.h4`
+const SubTitle = styled.h1`
   font-size: ${fontSize};
+  display: inline;
+  opacity: 0.6;
 `;
 
 const Info = styled.div`
-  color: white;
+  color: black;
   position: absolute;
   top: 20px;
   left: 60px;
@@ -50,7 +49,7 @@ const Icon = styled.img`
 
 const LegendItemContainer = styled.div`
   display: flex;
-  color: white;
+  color: black;
   opacity: 0.75;
   align-items: center;
   min-width: 150px;
@@ -101,7 +100,7 @@ export default class Project1 extends React.Component {
         </SketchContainer>
 
         <Info>
-          <Title>Together: <span>Visualizing Relationships</span></Title>
+          <Title>Together:</Title> <SubTitle>Visualizing Relationships</SubTitle>
         </Info>
         
         <Legend>

@@ -63,6 +63,28 @@ export default function IndexPage({ data }) {
     <Container>
 
       <Col>
+        <Subtitle>Projects:</Subtitle>
+
+        <List>
+          <PageLink
+            to="/project-1"
+            title="Project 1: Together"
+          />
+        </List>
+
+        {/* <List>
+          {pages.map( ({ node: page }, i) => (
+            <PageLink
+              to={page.frontmatter.path}
+              title={page.frontmatter.title}
+              key={page.id}
+            />
+          ))}
+        </List> */}
+      </Col>
+
+
+      <Col>
         <Subtitle>P5 Sketches:</Subtitle>
 
         <List>
@@ -70,21 +92,6 @@ export default function IndexPage({ data }) {
             <PageLink
               to={page.fields.slug}
               title={page.fields.title}
-              key={page.id}
-            />
-          ))}
-        </List>
-      </Col>
-
-
-      <Col>
-        <Subtitle>Text Posts:</Subtitle>
-
-        <List>
-          {pages.map( ({ node: page }, i) => (
-            <PageLink
-              to={page.frontmatter.path}
-              title={page.frontmatter.title}
               key={page.id}
             />
           ))}
